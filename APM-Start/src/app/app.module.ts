@@ -24,8 +24,8 @@ import { MessageModule } from './messages/message.module';
     RouterModule.forRoot([
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
-      {path: '', component: PageNotFoundComponent}
-    ]),
+      {path: '**', component: PageNotFoundComponent}
+    ], {useHash: true}),
     ProductModule,
     UserModule,
     MessageModule
