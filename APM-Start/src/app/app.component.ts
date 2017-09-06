@@ -1,3 +1,4 @@
+import { MessageService } from './messages/message.service';
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router, NavigationError, NavigationCancel } from '@angular/router';
 
@@ -12,14 +13,17 @@ export class AppComponent {
 
     loading: boolean = true;
 
-    constructor(private router: Router,
-                private authService: AuthService) {
-        router.events.subscribe((routerEvent: Event) => {
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+        private messageService: MessageService
+    ) {
+        router.events.subscribe((routerEvent) => {
             this.checkRouterEvent(routerEvent);
         });
     }
 
-    checkRouterEvent(routerEvent: Event): void {
+    checkRouterEvent(routerEvent: any): void {
         if (routerEvent instanceof NavigationStart) {
             this.loading = true;
         }
@@ -29,6 +33,16 @@ export class AppComponent {
             routerEvent instanceof NavigationError) {
                 this.loading = false;
             }
+    }
+
+    displayMessages(): void {
+        this.router.navigate([{outlets: { popup: ['messages']}}]);
+        this.messageService.isDisplayed = true;
+    }
+
+    hideMessages(): void {
+        this.router.navigate([{outlets: { popup: null}}]);
+        this.messageService.isDisplayed = false;
     }
 
     logOut(): void {

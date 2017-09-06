@@ -1,21 +1,19 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ProductData } from './products/product-data';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { MessageModule } from './messages/message.module';
 import { PageNotFoundComponent } from './page-not-found.component';
-
-/* Feature Modules */
+import { ProductData } from './products/product-data';
 import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
-import { MessageModule } from './messages/message.module';
-import { AppRoutingModule } from "./app-routing.module";
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+// Imports for loading & configuring the in-memory web api
+/* Feature Modules */
 @NgModule({
   imports: [
     BrowserModule,
