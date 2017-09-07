@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     LoginComponent
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
   ]
 })
 export class UserModule { }

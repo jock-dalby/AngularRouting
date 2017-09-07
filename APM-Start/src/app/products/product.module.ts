@@ -1,7 +1,9 @@
+import { ProductEditGuard } from './product-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from '../user/auth-guard.service';
 import { ProductDetailComponent } from './product-detail.component';
 import { ProductEditInfoComponent } from './product-edit-info.component';
 import { ProductEditTagsComponent } from './product-edit-tags.component';
@@ -16,6 +18,8 @@ import { ProductService } from './product.service';
     SharedModule,
     RouterModule.forChild([
       { path: 'products',
+        // canActivate: [AuthGuard],
+        // Try building a canActivateChildRoute for different level admins/ particular userId
         children: [
           {
             path: '',
@@ -29,6 +33,7 @@ import { ProductService } from './product.service';
           {
             path: ':id/edit',
             component: ProductEditComponent,
+            canDeactivate: [ProductEditGuard],
             resolve: { product: ProductResolver },
             children: [
               {
@@ -60,7 +65,8 @@ import { ProductService } from './product.service';
   ],
   providers: [
     ProductService,
-    ProductResolver
+    ProductResolver,
+    ProductEditGuard
   ]
 })
 export class ProductModule { }
