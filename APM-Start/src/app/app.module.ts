@@ -8,7 +8,6 @@ import { WelcomeComponent } from './home/welcome.component';
 import { MessageModule } from './messages/message.module';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { ProductData } from './products/product-data';
-import { ProductModule } from './products/product.module';
 import { UserModule } from './user/user.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
@@ -19,7 +18,6 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
     BrowserModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(ProductData, { delay: 1000 }),
-    ProductModule,
     UserModule,
     MessageModule,
     AppRoutingModule
